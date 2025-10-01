@@ -1,0 +1,42 @@
+body{
+    background-color: orangered;
+    color: whitesmoke;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    text-align: center;
+}
+label, p{
+    font-weight: bold;
+    font-size: 20px;
+}
+p{
+    text-align: center;
+}
+input{
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    margin: 7px;
+    padding-left: 7px;
+}
+button{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(81, 81, 246);
+    color: whitesmoke;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+button:active{
+    background-color: rgb(162, 162, 252);
+}

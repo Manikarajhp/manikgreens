@@ -1,0 +1,51 @@
+body{
+    background-color: orangered;
+    color: whitesmoke;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#container1, #container2{
+    margin: 10px;
+}
+
+#container2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1{
+    text-align: center;
+}
+label, p{
+    font-weight: bold;
+    font-size: 20px;
+}
+input{
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    margin: 7px;
+    padding-left: 7px;
+}
+button:disabled{
+    cursor: not-allowed;
+    background-color: rgb(118, 118, 248);
+}
+
+button{
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(81, 81, 246);
+    color: whitesmoke;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
