@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h2 id="Title">Product Dashboard</h2>
+        <div id="nav-container">
+            <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li class="active"><a href="addProduct.html">Add Product</a></li>
+                <li><a href="editProduct.html">Edit Product</a></li>
+            </ul>
+            </nav>
+            <h4>Total Products : <span id="totalProducts">240</span></h4>
+        </div>
+        <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
+    </header>
+    <main id="addproduct-main">
+        <div id="add-product">
+            <h3>Add a New Product</h3>
+            <form action="" id="addProductForm">
+                <label for="name">Name of Product : </label>
+                <input type="text" name="productName" id="name" placeholder="eg: Laptop" required>
+                <label for="categoty">Categoty : </label>
+                <input type="text" placeholder="Electronics" name="productCategoty" id="categoty" required>
+                <label for="price">Price : </label>
+                <input type="number" placeholder="1718" name="productPrice" id="price" required>
+                <label for="stock">Stock Count : </label>
+                <input type="number" placeholder="11" name="productStock" id="stock" required>
+                <label for="detail">Product Detail : </label>
+                <textarea name="productDetail" id="detail" required></textarea>
+                <label for="image">Upload Product Image : </label>
+                <input type="text" placeholder="https://exampleImage.jpg" id="image" name="productImage">
+                <input type="submit" value="Add Product">
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById("addProductForm").addEventListener('submit', (event) => {
+            event.preventDefault();
+            const productDetail = {
+                "productid" : 0,
+                "productname":"",
+                "productcate":"",
+                "productprice" : 0,
+                "productstock" : 0,
+                "productdetail" : "",
+                "productimage" : ""
+            }
+            productDetail.productid = totalProducts + 1;
+            productDetail.productname = event.target.productName.value;
+            productDetail.productcate = event.target.productCategoty.value;
+            productDetail.productprice = event.target.productPrice.value;
+            productDetail.productstock = event.target.productStock.value;
+            productDetail.productdetail = event.target.productDetail.value;
+        
+            if(event.target.productImage.value == ""){
+                productDetail.productimage = "https://static.vecteezy.com/system/resources/previews/022/014/063/original/missing-picture-page-for-website-design-or-mobile-app-design-no-image-available-icon-vector.jpg";
+            }else{
+                productDetail.productimage = event.target.productImage.value;
+            }
+            Products.push(productDetail);
+
+            loadDataToLocalStorage();
+        });
+    </script>
+</body>
+</html>

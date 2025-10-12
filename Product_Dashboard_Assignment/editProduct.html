@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h2 id="Title">Product Dashboard</h2>
+        <div id="nav-container">
+            <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="addProduct.html">Add Product</a></li>
+                <li class="active"><a href="editProduct.html">Edit Product</a></li>
+            </ul>
+            </nav>
+            <h4>Total Products : <span id="totalProducts">240</span></h4>
+        </div>
+        <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
+    </header>
+    <main id="edit-main">
+        <div id="card-container">
+        </div>
+    </main>
+    <main id="edit-form">
+        <div id="edit-container">
+            <div id="form-card">
+                <div style="display: grid; grid-template-columns: auto 20px;"><h3>Edit Product Detail</h3><button onclick="disableEdit()" style="background: transparent; border: none;"> <i class="fa-solid fa-xmark"></i></button></div>
+                <form action=""  id="save">
+                    <input type="number" id="id" style="display: none;" name="productId">
+                    <label for="name">Name of Product : </label>
+                    <input type="text" name="productName" id="name" required>
+                    <label for="categoty">Categoty : </label>
+                    <input type="text" name="productCategoty" id="categoty" required>
+                    <label for="price">Price : </label>
+                    <input type="number" name="productPrice" id="price" required>
+                    <label for="stock">Stock Count : </label>
+                    <input type="number" name="productStock" id="stock" required>
+                    <label for="detail">Product Detail : </label>
+                    <textarea name="productDetail" id="detail"></textarea>
+                    <label for="image">Upload Product Image : </label>
+                    <input type="text" id="image" name="productImage">
+                    <input type="submit" value="Save Changes">
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        Products.forEach(product => {
+            const cardHTML = `
+                <div class="card">
+                    <img class="image" src="${product.productimage}" alt="">
+                    <div class="content">
+                        <h3 class="productName">${product.productname}</h3>
+                        <h4>$ ${product.productprice}</h4>
+                        <p class="productDetail">${product.productdetail}</p>
+                        <p class="productStock">Stock : <span id="productStockCount">${product.productstock}</span></p>
+                        ${product.productstock == 0 ? "<span id='insufficientStock'>!</span>" : ""}
+                    </div>
+                    <div class="edit-session">
+                        <button class="deleteButton" onclick="deleteProduct(${product.productid})">Delete</button>
+                        <button class="editButton" onclick="enableEdit(${product.productid})">Edit</button>
+                    </div>
+                </div>
+            `;
+            cardContainer.insertAdjacentHTML('beforeend', cardHTML);
+        });
+        document.getElementById("save").addEventListener('submit', (event) => {
+            event.preventDefault();
+            let productDetail = {};
+            Products.forEach(element => {
+                if(element.productid == event.target.productId.value){
+                    productDetail = element;
+                }
+            });
+            
+            productDetail.productname = event.target.productName.value;
+            productDetail.productcate = event.target.productCategoty.value;
+            productDetail.productprice = event.target.productPrice.value;
+            productDetail.productstock = event.target.productStock.value;
+            productDetail.productdetail = event.target.productDetail.value;
+        
+            if(event.target.productImage.value == ""){
+                productDetail.productimage = "https://static.vecteezy.com/system/resources/previews/022/014/063/original/missing-picture-page-for-website-design-or-mobile-app-design-no-image-available-icon-vector.jpg";
+            }else{
+                productDetail.productimage = event.target.productImage.value;
+            }
+
+            loadDataToLocalStorage();
+        });
+        function deleteProduct(id){
+            const isConfirmed = confirm("Are you Sure To delete?");
+            if(isConfirmed){
+                Products.splice(id-1, 1);
+                alert("Product Deleted Successfully.");
+                loadDataToLocalStorage();
+            }
+        }
+    </script>
+</body>
+</html>

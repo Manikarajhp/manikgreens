@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+<body>
+    <header>
+        <h2 id="Title">Product Dashboard</h2>
+        <div id="nav-container">
+            <nav>
+            <ul>
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="addProduct.html">Add Product</a></li>
+                <li><a href="editProduct.html">Edit Product</a></li>
+            </ul>
+            </nav>
+            <h4>Total Products : <span id="totalProducts">240</span></h4>
+        </div>
+        <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
+    </header>
+    <div id="SearchAndFilter">
+        <input type="text" id="searchProduct" placeholder="Search">
+        <select id="filterBox">
+            
+        </select>
+        <button id="searchButton">Search</button>
+    </div>
+    <main id="home-main">
+        
+    </main>
+    <script src="script.js"></script>
+    <script>
+
+        const categories = [];
+
+        function renderProducts(products) {
+            homeMain.innerHTML = '';
+            products.forEach(product => {
+                if (!categories.includes(product.productcate)){
+                    categories.push(product.productcate);
+                }
+                homeMain.insertAdjacentHTML('beforeend', `
+                    <div class="card">
+                        <img class="image" src="${product.productimage}" alt="">
+                        <div class="content">
+                            <h3 class="productName">${product.productname}</h3>
+                            <h4>$ ${product.productprice}</h4>
+                            <p class="productDetail">${product.productdetail}</p>
+                            <p class="productStock">Stock : <span class="productStockCount">${product.productstock}</span></p>
+                        </div>
+                        <button id="sellProduct" onclick="sellItems(${product.productid})" ${product.productstock == 0 ? 'disabled' : ''}>Sell</button>
+                        ${product.productstock == 0 ? "<span id='insufficientStock'>!</span>" : ""}
+                    </div>
+                `);
+            });
+        }
+
+        renderProducts(Products);
+        categories.forEach(category => {
+            filterList.insertAdjacentHTML('beforeend',
+                `<option value="${category}">${category}</option>`
+            )
+        });
+        
+
+        document.getElementById('searchButton').addEventListener('click', () => {
+            const searchValue = document.getElementById('searchProduct').value.trim().toLowerCase();
+            const filterValue = document.getElementById('filterBox').value;
+            
+            const searchResult = Products.filter(product =>{
+                if(product.productname.toLowerCase().startsWith(searchValue) &&product.productcate == filterValue){ return product;}
+            });
+            
+            renderProducts(searchResult);
+        });
+
+        function sellItems(id) {
+            const quantity = Number(prompt("Enter the Quantity to Sell : "));
+            if(Products[id-1].productstock >= quantity){
+                Products[id-1].productstock -= quantity;
+            }else{
+                alert("Invalid input or insufficient Stock!");
+            }
+            loadDataToLocalStorage();
+        }
+    </script>
+</body>
+</html>
