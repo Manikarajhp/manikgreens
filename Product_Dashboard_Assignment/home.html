@@ -21,14 +21,14 @@
             </nav>
             <h4>Total Products : <span id="totalProducts">240</span></h4>
         </div>
-        <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
+        <button id="toggleButton" onclick="menuBarOpen()"><i class="fa-solid fa-bars"></i></button>
     </header>
     <div id="SearchAndFilter">
         <input type="text" id="searchProduct" placeholder="Search">
         <select id="filterBox">
             
         </select>
-        <button id="searchButton">Search</button>
+        <button id="searchButton" onclick="searchItems()">Search</button>
     </div>
     <main id="home-main">
         
@@ -68,7 +68,7 @@
         });
         
 
-        document.getElementById('searchButton').addEventListener('click', () => {
+        function searchItems(){
             const searchValue = document.getElementById('searchProduct').value.trim().toLowerCase();
             const filterValue = document.getElementById('filterBox').value;
             
@@ -77,7 +77,7 @@
             });
             
             renderProducts(searchResult);
-        });
+        }
 
         function sellItems(id) {
             const quantity = Number(prompt("Enter the Quantity to Sell : "));

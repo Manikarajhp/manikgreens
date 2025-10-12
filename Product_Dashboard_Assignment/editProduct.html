@@ -20,7 +20,7 @@
             </nav>
             <h4>Total Products : <span id="totalProducts">240</span></h4>
         </div>
-        <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
+        <button id="toggleButton" onclick="menuBarOpen()"><i class="fa-solid fa-bars"></i></button>
     </header>
     <main id="edit-main">
         <div id="card-container">
@@ -29,7 +29,7 @@
     <main id="edit-form">
         <div id="edit-container">
             <div id="form-card">
-                <div style="display: grid; grid-template-columns: auto 20px;"><h3>Edit Product Detail</h3><button onclick="disableEdit()" style="background: transparent; border: none;"> <i class="fa-solid fa-xmark"></i></button></div>
+                <div style="display: grid; grid-template-columns: auto 20px;"><h3>Edit Product Detail</h3><button onclick="disableEdit()" style="background: transparent; border: none; color: black;"> <i class="fa-solid fa-xmark"></i></button></div>
                 <form action=""  id="save">
                     <input type="number" id="id" style="display: none;" name="productId">
                     <label for="name">Name of Product : </label>

@@ -35,11 +35,11 @@ function loadDataToLocalStorage(){
     window.location.href = 'home.html';
 }
 
-document.getElementById('toggleButton').addEventListener('click', () => {
+function menuBarOpen(){
     const menuBar = document.getElementById('nav-container');
     if(menuBar.style.display == 'none'){
         document.getElementById('nav-container').style.display = 'flex';
     }else{
         document.getElementById('nav-container').style.display = 'none';
     }
-});
+}

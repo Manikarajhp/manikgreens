@@ -15,7 +15,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 7px;
-    border-bottom: 1px solid blue;
+    background-color: rgb(62, 62, 255);
+    color: white;
 }
 #nav-container{
     display: flex;
@@ -39,6 +40,7 @@ nav ul li {
     padding: 7px;
     border-radius: 7px;
     transition: background 0.2s;
+    margin: 0px 7px;
 }
 nav ul li a {
     text-decoration: none;
@@ -47,11 +49,11 @@ nav ul li a {
 }
 nav ul li:hover, 
 .active {
-    background-color: rgb(62, 62, 255);
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(2, 0, 128);
 }
 nav ul li:hover a {
-    color: white;
+    color: rgb(2, 0, 128);
 }
 #toggleButton{
     width: 50px;
@@ -185,11 +187,10 @@ nav ul li:hover a {
 #add-product,
 #form-card{
     width: 300px;
-    height: 500px;
     padding: 7px;
     background-color: rgb(202, 202, 202);
     border-radius: 10px;
-    border: 1px solid gray;
+    border: 1px solid rgb(103, 103, 103);
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     text-align: center;
 }
@@ -197,9 +198,11 @@ form{
     height: 95%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     text-align: left;
     padding: 7px;
+}
+form > *{
+    margin: 5px 0px;
 }
 form label{
     font-size: 14px;
@@ -291,13 +294,16 @@ form input[type = "submit"]:hover{
         color: white;
     }
     header h2,
-    button{
+    header button{
         margin: 10px;
         background: transparent;
         color: white;
     }
     nav ul{
         flex-direction: column;
+    }
+    nav ul li{
+        margin: 7px 0px;
     }
     #nav-container h4{
         margin-top: 10px;
@@ -345,5 +351,6 @@ form input[type = "submit"]:hover{
         font-weight: bold;
         font-size: 16px;
     }
+    
     
 }
