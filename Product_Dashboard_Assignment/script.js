@@ -1,9 +1,14 @@
 
+const key = 'Products';
+if (localStorage.getItem(key) === null) {
+    const defaultValue = JSON.stringify([]);
+    localStorage.setItem(key, defaultValue);
+} 
+
 const homeMain = document.getElementById('home-main');
 const cardContainer = document.getElementById('card-container');
 const editFormContainer = document.getElementById('edit-container');
 const filterList = document.getElementById('filterBox');
-
 const productForm = document.getElementById("addProductForm");
 let Products = JSON.parse(localStorage.getItem("Products"));
 const totalProducts = Products.length;
