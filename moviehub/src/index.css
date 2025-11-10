@@ -1,0 +1,59 @@
+/* src/index.css */
+/* Import Bootstrap CSS first */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom Dark Blue Theme (NFR2.0) */
+:root {
+  --movie-dark-blue: #0D1B2A; /* Primary background */
+  --movie-light-blue: #1B2A41; /* Card/Navbar background */
+  --movie-accent: #415A77; /* Accent/Hover color */
+  --movie-text: #E0E1DD; /* White/Light text */
+  --movie-rating-good: #2ECC71; /* Green for high ratings */
+}
+
+body {
+  background-color: var(--movie-dark-blue);
+  color: var(--movie-text);
+  min-height: 100vh;
+}
+
+/* Custom styles for Bootstrap components */
+.navbar {
+    background-color: var(--movie-light-blue) !important;
+}
+
+.card {
+    background-color: var(--movie-light-blue) !important;
+    color: var(--movie-text) !important;
+    border: 1px solid var(--movie-accent) !important;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary {
+    background-color: var(--movie-accent) !important;
+    border-color: var(--movie-accent) !important;
+}
+
+.text-accent {
+    color: var(--movie-accent) !important;
+}
+
+/* Rating Badge Styling */
+.rating-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-weight: bold;
+    color: var(--movie-text);
+}
+
+.rating-high { background-color: var(--movie-rating-good); }
+.rating-mid { background-color: #F39C12; /* Orange */ }
+.rating-low { background-color: #E74C3C; /* Red */ }
